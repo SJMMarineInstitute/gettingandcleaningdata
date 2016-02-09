@@ -3,16 +3,14 @@ library(reshape2)
 
 
 ## Get the list of the files 
- ##setwd('//galwayfs03/fishdata/Coursera/Data Science/Getting and Cleaning Data/')
- ##getwd()
+#setwd("F:/Coursera/Data Science/Getting and Cleaning Data/UCI HAR Dataset")
+ #getwd()
  path <- file.path('/Coursera/Data Science/Getting and Cleaning Data/UCI HAR Dataset/') 
  files<-list.files(path,recursive=TRUE) 
  files
 ## Read all activities and their names and label the aproppriate columns 
  activity_labels <- read.table("./activity_labels.txt",col.names=c("activity_id","activity_name"))
  training_labels<- read.table("./train/y_train.txt")
- features_info<- read.table("./features_info.txt")
- features_info
  features<- read.table("./features.txt")
  feature_names<-features[,2]
 ## get the test data and lable the columns
@@ -69,7 +67,10 @@ library(reshape2)
  mean_data <- dcast(data_melt,activity_id + activity_name + subject_id ~ variable,mean)
  
 ## Create a file with the new tidy dataset
- write.table(mean_data,"./tidy_data.txt")
+ write.table(mean_data,"./tidy_data.txt",row.names = FALSE)
+ tidy<-read.table("./tidy_data.txt")
+ 
+
  
 
  
